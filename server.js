@@ -12,20 +12,19 @@ const db = require("./config/keys").mongoURI;
 
 //Connect to Mongo
 mongoose
-  .connect(db)
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB.."))
   .catch(error => console.log(error));
 
 // Init middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 // Entry point
 app.get("/", (req, res) => res.send(`<h1>EgyMate</h1>`));
 
 // Direct to Route Handlers
 app.use("/api/tourists", tourists);
-app.use("/api/tourGuides", tourGuides);
+//app.use("/api/tourGuides", tourGuides);
 
 app.use((req, res) =>
   res.status(404).send(`<h1>Can not find what you're looking for</h1>`)
