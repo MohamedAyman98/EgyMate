@@ -3,7 +3,19 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const TouristSchema = new Schema({
-  name: {
+  fullName: {
+    type: String,
+    required: true
+  },
+  birthDate: {
+    type: Date,
+    required: true
+  },
+  Email: {
+    type: String,
+    required: true
+  },
+  Nationality: {
     type: String,
     required: true
   }
