@@ -18,6 +18,10 @@ const TouristSchema = new Schema({
   Nationality: {
     type: String,
     required: true
+  },
+  phoneNumber: {
+    type: Number,
+    required: true
   }
 });
 
