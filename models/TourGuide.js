@@ -7,7 +7,7 @@ const TourGuideSchema = new Schema({
     type: String,
     required: true
   },
-  Email: {
+  email: {
     type: String,
     required: true
   },
@@ -18,7 +18,11 @@ const TourGuideSchema = new Schema({
   phoneNumber: {
     type: Number,
     required: true
+  },
+  hourlyRate: {
+    type: Number,
+    required: true
   }
 });
 
-module.exports = TourGuide = mongoose.model("tourguide", TourGuideSchema);
+module.exports = TourGuide = mongoose.model("tourGuide", TourGuideSchema);

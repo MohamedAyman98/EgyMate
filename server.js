@@ -24,7 +24,7 @@ app.get("/", (req, res) => res.send(`<h1>EgyMate</h1>`));
 
 // Direct to Route Handlers
 app.use("/api/tourists", tourists);
-//app.use("/api/tourGuides", tourGuides);
+app.use("/api/tourGuides", tourGuides);
 
 app.use((req, res) =>
   res.status(404).send(`<h1>Can not find what you're looking for</h1>`)

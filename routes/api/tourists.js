@@ -52,7 +52,7 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     const deletedTourist = await Tourist.findByIdAndRemove(id);
     if (!deletedTourist)
-      res.status(404).send({ error: "Tourist does not exist" });
+      res.status(404).json({ error: "Tourist does not exist" });
 
     res.json({ msg: "Tourist was deleted successfully", data: deletedTourist });
   } catch (error) {

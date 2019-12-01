@@ -7,15 +7,15 @@ const TouristSchema = new Schema({
     type: String,
     required: true
   },
-  birthDate: {
-    type: Date,
+  age: {
+    type: Number,
     required: true
   },
-  Email: {
+  email: {
     type: String,
     required: true
   },
-  Nationality: {
+  nationality: {
     type: String,
     required: true
   },

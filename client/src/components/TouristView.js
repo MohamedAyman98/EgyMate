@@ -21,7 +21,7 @@ export class TouristView extends Component {
   render() {
     return (
       <div>
-        <h3>Select a city</h3>
+        <h3>Select a city you'd like to explore</h3>
         <select value={this.state.selectValue} onChange={this.handleChange}>
           <option value="-">-</option>
           <option value="Cairo">Cairo</option>
