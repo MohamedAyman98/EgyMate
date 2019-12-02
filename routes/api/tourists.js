@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 // Tourist model
-const Tourist = require("../../models/Tourist");
+const Tourist = require("../../models/User");
 
 // Get all tourists
 router.get("/", async (req, res) => {
-  const tourists = await Tourist.find();
+  const tourists = await User.find();
   res.json({ data: tourists });
 });
 
 // Get tourist by ID
 router.get("/:id", async (req, res) => {
-  const tourist = await Tourist.findById(req.params.id);
+  const tourist = await User.findById(req.params.id);
   if (!tourist) res.json({ error: "Tourist does not exist" });
   else res.json({ data: tourist });
 });
@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
 // Create a tourist
 router.post("/", async (req, res) => {
   try {
-    const newTourist = await Tourist.create(req.body);
+    const newTourist = await User.create(req.body);
     res.json({ msg: "Tourist was created successfully", data: newTourist });
   } catch (error) {
     console.log(error);
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const tourist = await Tourist.findOne({ id });
+    const tourist = await User.findOne({ id });
     if (!tourist)
       return res.status(404).send({ error: "Tourist does not exist" });
     // const isValidated = validator.updateValidation(req.body);
@@ -39,7 +39,7 @@ router.put("/:id", async (req, res) => {
     //   return res
     //     .status(400)
     //     .send({ error: isValidated.error.details[0].message });
-    const updatedTourist = await Tourist.updateOne(req.body);
+    const updatedTourist = await User.updateOne(req.body);
     res.json({ msg: "Tourist updated successfully", data: updatedTourist });
   } catch (error) {
     console.log(error);
@@ -50,7 +50,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const deletedTourist = await Tourist.findByIdAndRemove(id);
+    const deletedTourist = await User.findByIdAndRemove(id);
     if (!deletedTourist)
       res.status(404).json({ error: "Tourist does not exist" });
 

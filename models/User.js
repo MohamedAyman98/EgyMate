@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const tripSchema = require("./trip.model").schema;
+const tripSchema = require("./Trip").schema;
 
 //User schema
 const userSchema = new Schema(
@@ -32,7 +32,7 @@ userSchema.index({
 
 //Tourguide schema
 const tourguideSchema = new Schema({
-  yearsOfExperience: Number,
+  yearsOfExperience: Number
 });
 
 tourguideSchema.index({
@@ -46,7 +46,6 @@ tourguideSchema.virtual("offers", {
 });
 
 //Tourist schema
-
 const touristSchema = new Schema({
   trips: [tripSchema]
 });
