@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const touristGuideSchema = new Schema({
+const tourGuideSchema = new Schema({
   name: String,
   birthdate: Date,
   address: {
     country: String,
-    state: String,
     city: String,
     street: String,
     locationURL: String
@@ -16,4 +15,4 @@ const touristGuideSchema = new Schema({
   yearsOfExperience: Number
 });
 
-module.exports = Tourist = mongoose.model("TourGuide", tourGuideSchema);
+module.exports = TourGuide = mongoose.model("TourGuide", tourGuideSchema);

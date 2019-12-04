@@ -12,7 +12,7 @@ const touristSchema = new Schema({
   },
   contactNumbers: [String],
   languages: [String],
-  trips: [tripSchema]
+  trips: [{ type: Schema.Types.ObjectId, ref: "Trip", required: true }]
 });
 
 module.exports = Tourist = mongoose.model("Tourist", touristSchema);

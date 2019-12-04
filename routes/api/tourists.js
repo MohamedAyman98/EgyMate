@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Tourist model
-const Tourist = require("../../models/User");
+const Tourist = require("../../models/Tourist");
 
 // Get all tourists
 router.get("/", async (req, res) => {

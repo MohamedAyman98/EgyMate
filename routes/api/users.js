@@ -5,7 +5,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 // User model
-const User = require("../../models/User1");
+const User = require("../../models/User");
 
 // Get all Users
 router.get("/", async (req, res) => {
