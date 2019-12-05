@@ -13,6 +13,14 @@ router.get("/", async (req, res) => {
   res.json({ data: users });
 });
 
+// Get User by ID
+router.get("/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) res.json({ error: "User does not exist" });
+  else res.json({ data: user });
+});
+
+// Register user
 router.post("/register", (req, res) => {
   const { name, email, password, phoneNumber, type } = req.body;
 
@@ -61,17 +69,40 @@ router.post("/register", (req, res) => {
   });
 });
 
-// Get all Users
-router.get("/", async (req, res) => {
-  const users = await User.find();
-  res.json({ data: users });
-});
+// User login
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
 
-// Get User by ID
-router.get("/:id", async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) res.json({ error: "User does not exist" });
-  else res.json({ data: user });
+  //Simple validation
+  if (!email || !password)
+    return res.status(400).json({ msg: "Please enter all fields" });
+
+  //Check for existing user
+  User.findOne({ email }).then(user => {
+    if (!user) return res.status(400).json({ msg: "User does not exist" });
+
+    // Validate password
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+      jwt.sign(
+        { id: user.id },
+        config.get("jwtSecret"),
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              type: user.type
+            }
+          });
+        }
+      );
+    });
+  });
 });
 
 // Create a user
@@ -118,7 +149,5 @@ router.delete("/:id", async (req, res) => {
     console.log(error);
   }
 });
-
-//router.get("/choose city/:touristId", async (req, res) => {});
 
 module.exports = router;
