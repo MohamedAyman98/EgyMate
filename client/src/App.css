@@ -20,3 +20,13 @@
 .App-link {
   color: #09d3ac;
 }
+
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url("./Egyback2.jpeg");
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
