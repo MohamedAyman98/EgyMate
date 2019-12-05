@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 
 // User model
 const User = require("../../models/User");
+const Tourist = require("../../models/Tourist");
+const TOurGuide = require("../../models/TourGuide");
 
 // Get all Users
 router.get("/", async (req, res) => {
@@ -13,49 +15,50 @@ router.get("/", async (req, res) => {
   res.json({ data: users });
 });
 
-router.post("/register", (req, res) => {
-  const { name, email, password } = req.body;
+// router.post("/register", (req, res) => {
+//   const { name, email, password, userType } = req.body;
 
-  //Simple validation
-  if (!name || !email || !password)
-    return res.status(400).json({ msg: "Please enter all fields" });
+//   //Simple validation
+//   if (!name || !email || !password)
+//     return res.status(400).json({ msg: "Please enter all fields" });
 
-  //Check for existing user
-  User.findOne({ email }).then(user => {
-    if (user) return res.status(400).json({ msg: "User already exists" });
+//   //Check for existing user
+//   User.findOne({ email }).then(user => {
+//     if (user) return res.status(400).json({ msg: "User already exists" });
 
-    const newUser = new User({
-      name,
-      email,
-      password
-    });
+//     if (userType === "Tourist")
+//       const newUser = new Tourist({
+//         name,
+//         email,
+//         password
+//       });
 
-    // Create salt & hash
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-        newUser.save().then(user => {
-          jwt.sign(
-            { id: user.id },
-            config.get("jwtSecret"),
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token,
-                user: {
-                  id: user.id,
-                  name: user.name,
-                  email: user.email
-                }
-              });
-            }
-          );
-        });
-      });
-    });
-  });
-});
+//     // Create salt & hash
+//     bcrypt.genSalt(10, (err, salt) => {
+//       bcrypt.hash(newUser.password, salt, (err, hash) => {
+//         if (err) throw err;
+//         newUser.password = hash;
+//         newUser.save().then(user => {
+//           jwt.sign(
+//             { id: user.id },
+//             config.get("jwtSecret"),
+//             { expiresIn: 3600 },
+//             (err, token) => {
+//               if (err) throw err;
+//               res.json({
+//                 token,
+//                 user: {
+//                   id: user.id,
+//                   name: user.name,
+//                   email: user.email
+//                 }
+//               });
+//             }
+//           );
+//         });
+//       });
+//     });
+//   });
+// });
 
 module.exports = router;

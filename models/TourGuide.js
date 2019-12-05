@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const tourGuideSchema = new Schema({
   name: String,
   email: String,
+  password: String,
   birthdate: Date,
   address: {
     country: String,
