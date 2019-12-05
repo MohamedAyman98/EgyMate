@@ -1,15 +1,18 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AppNavBar from "./components/AppNavBar";
+import { BrowserRouter, Route } from "react-router-dom";
 import TouristView from "./components/TouristView";
+import Landing from "./components/Landing";
 
 function App() {
   return (
-    <div className="App">
-      <AppNavBar />
-      <TouristView />
-    </div>
+    <BrowserRouter> 
+    
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/Tourist" component={TouristView} />
+
+    </BrowserRouter>
   );
 }
 
