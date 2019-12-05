@@ -6,8 +6,6 @@ const jwt = require("jsonwebtoken");
 
 // User model
 const User = require("../../models/User");
-const Tourist = require("../../models/Tourist");
-const TOurGuide = require("../../models/TourGuide");
 
 // Get all Users
 router.get("/", async (req, res) => {
@@ -60,5 +58,63 @@ router.get("/", async (req, res) => {
 //     });
 //   });
 // });
+
+// Get all Users
+router.get("/", async (req, res) => {
+  const users = await User.find();
+  res.json({ data: users });
+});
+
+// Get User by ID
+router.get("/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) res.json({ error: "User does not exist" });
+  else res.json({ data: user });
+});
+
+// Create a user
+router.post("/", async (req, res) => {
+  try {
+    const newUser = await User.create(req.body);
+    res.json({
+      msg: "User was created successfully",
+      data: newUser
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Update a user
+router.put("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findOne({ id });
+    if (!user) return res.status(404).send({ error: "User does not exist" });
+    const updatedUser = await User.updateOne(req.body);
+    res.json({
+      msg: "User updated successfully",
+      data: updatedUser
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Delete a user
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedUser = await User.findByIdAndRemove(id);
+    if (!deletedUser) res.status(404).json({ error: "User does not exist" });
+
+    res.json({
+      msg: "User was deleted successfully",
+      data: deletedUser
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

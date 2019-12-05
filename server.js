@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const app = express();
 
 // Require Router Handlers
-const tourists = require("./routes/api/tourists");
-const tourGuides = require("./routes/api/tourGuides");
 const users = require("./routes/api/users");
 const config = require("config");
 
@@ -29,8 +27,6 @@ app.use(express.json());
 app.get("/", (req, res) => res.send(`<h1>EgyMate</h1>`));
 
 // Direct to Route Handlers
-// app.use("/api/tourists", tourists);
-// app.use("/api/tourGuides", tourGuides);
 app.use("/api/users", users);
 
 app.use((req, res) =>
