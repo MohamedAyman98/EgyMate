@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const touristSchema = new Schema({
   name: String,
+  email: String,
   birthdate: Date,
   address: {
     country: String,
