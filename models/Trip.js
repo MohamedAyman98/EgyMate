@@ -1,37 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const offerSchema = require("./Offer").schema;
-const placeSchema = require("./Place").schema;
 
 //Trip schema
-const tripSchema = new Schema(
-  {
-    country: String,
-    states: [String],
-    cities: [String],
-    places: [placeSchema],
-    statedStatesOnly: {
-      type: Boolean,
-      default: false
-    },
-    statedPlacesOnly: {
-      type: Boolean,
-      default: false
-    },
-    startDate: Date,
-    endDate: Date,
-    averagePrice: Number,
-    image: String,
-    tourist: { type: Schema.Types.ObjectId, ref: "Tourist", required: true },
-    offers: [offerSchema],
-    acceptedOffer: offerSchema
+const tripSchema = new Schema({
+  city: {
+    type: String
   },
-  {
-    timestamps: true
+  placestoVisit: {
+    type: [String],
+    required: true
+  },
+  locationURL: {
+    type: String
+  },
+  tourguide: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   }
-);
-tripSchema.index({
-  "$**": "text"
 });
 
 module.exports = Trip = mongoose.model("Trip", tripSchema);

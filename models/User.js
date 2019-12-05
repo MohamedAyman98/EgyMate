@@ -14,7 +14,15 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  userType: String
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  userType: {
+    type: String,
+    required: true,
+    enum: ["Tourist", "TourGuide"]
+  }
 });
 
 module.exports = User = mongoose.model("User", UserSchema);
