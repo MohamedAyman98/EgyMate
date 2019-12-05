@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const config = require("config");
 
 const app = express();
 
 // Require Router Handlers
 const users = require("./routes/api/users");
-const config = require("config");
 
 //Db config
 const db = config.get("mongoURI");

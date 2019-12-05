@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
-  userType: {
+  type: {
     type: String,
     required: true,
     enum: ["Tourist", "TourGuide"]
