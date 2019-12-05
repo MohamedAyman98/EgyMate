@@ -10,9 +10,6 @@ const tripSchema = new Schema({
     type: [String],
     required: true
   },
-  locationURL: {
-    type: String
-  },
   tourguide: {
     type: Schema.Types.ObjectId,
     ref: "User",

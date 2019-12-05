@@ -2,28 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //Place schema
-const placeSchema = new Schema(
-  {
-    name: String,
-    address: {
-      country: String,
-      state: String,
-      city: String,
-      street: String,
-      locationURL: String
-    },
-    description: String,
-    averagePrice: Number,
-    image: String,
-    tags: [String]
+const placeSchema = new Schema({
+  name: {
+    type: String
   },
-  {
-    timestamps: true
+  locationURL: {
+    type: String
   }
-);
-
-placeSchema.index({
-  "$**": "text"
 });
 
 module.exports = Place = mongoose.model("Place", placeSchema);
