@@ -1,10 +1,10 @@
-# EgyMate
+# EgyMate Web Application
 Platform that connects tourists to tour guides.
 
-# Dependancies
+# Dependancies:
 
-# Config
+# Config:
 
-# Docker
+# Docker:
 
-# Docker-Compose
+# Docker-Compose:
