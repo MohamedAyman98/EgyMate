@@ -1,9 +1,9 @@
 version: "2.1"
 
 services:
-  app:
-    container_name: docker-node-mongo
+  app: 
+     container_name: docker-node-app
     restart: always
     build: .
     ports:
-      - "80:5000"
+      - "5000:5000"
