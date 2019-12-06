@@ -6,6 +6,8 @@ const app = express();
 
 // Require Router Handlers
 const users = require("./routes/api/users");
+const places = require("./routes/api/places");
+const trips = require("./routes/api/trips");
 
 //Db config
 const db = config.get("mongoURI");
@@ -28,6 +30,8 @@ app.get("/", (req, res) => res.send(`<h1>EgyMate</h1>`));
 
 // Direct to Route Handlers
 app.use("/api/users", users);
+app.use("/api/places", places);
+app.use("/api/trips", trips);
 
 app.use((req, res) =>
   res.status(404).send(`<h1>Can not find what you're looking for</h1>`)

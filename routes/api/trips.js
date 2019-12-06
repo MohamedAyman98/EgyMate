@@ -3,7 +3,13 @@ const router = express.Router();
 const User = require("../../models/User");
 const Trip = require("../../models/Trip");
 
-//Get by city
+// Get all trips
+router.get("/", async (req, res) => {
+  const trips = await Trip.find();
+  res.json({ data: trips });
+});
+
+//Tourist get trips by city.
 router.get("/:city", async (res, req) => {
   const city = req.params.city;
   const trips = await Trip.find({ city: city });
@@ -36,10 +42,10 @@ router.get("/:tourguide", async (req, res) => {
   }
 });
 
-//Create trip
-router.post("/create/:id", async (req, res) => {
+//TourGuide create trip
+router.post("/createTrip/:tourGuideId", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.tourGuideId;
     const tourguide = await User.findById({ _id: id });
     if (tourguide.type != "TourGuide") {
       res.json({ msg: "You have to be a tourguide" });
@@ -48,8 +54,11 @@ router.post("/create/:id", async (req, res) => {
     const newTrip = new Trip({
       city,
       placestoVisit,
-      id
+      tourguide: id
     });
+
+    newTrip.save().then(newTrip => res.json({ data: newTrip }));
+
     res.json({ data: newTrip });
   } catch (error) {
     console.log(error);
@@ -57,14 +66,15 @@ router.post("/create/:id", async (req, res) => {
   }
 });
 
-//Add places
-router.put("/:id/addplaces", async (req, res) => {
+//TourGuide adds places to trip
+router.put("/addplaces/:tripId", async (req, res) => {
   try {
-    const id = req.params.id;
+    const tourguide = req.params.tourGuideId;
+    const tripId = req.params.tripId;
     const places = req.body.places;
-    const updatedTrip = await Trip.update(
-      { _id: id },
-      { $push: { placestoVisit: { $each: places } } }
+    const updatedTrip = await Trip.updateOne(
+      { _id: tripId },
+      { $push: { placestoVisit: places } }
     );
     res.json({ data: updatedTrip });
   } catch (error) {
@@ -73,12 +83,12 @@ router.put("/:id/addplaces", async (req, res) => {
   }
 });
 
-//Remove places
-router.put("/:id/removeplaces", async (req, res) => {
+//TourGuide remove places from a trip
+router.put("/removeplaces/:tripId", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.tripId;
     const places = req.body.places;
-    const updatedTrip = await Trip.update(
+    const updatedTrip = await Trip.updateOne(
       { _id: id },
       { $pullAll: { placestoVisit: places } }
     );
@@ -89,13 +99,17 @@ router.put("/:id/removeplaces", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+// TourGuide delete trip.
+router.delete("/:tourGuideId/:tripId", async (req, res) => {
   try {
-    const id = req.params.id;
-    const trip = await Trip.findByIdAndRemove({ _id: id });
-    res.json({ msg: "Trip delted ", data: trip });
+    const id = req.params.tripId;
+    const tourguide = req.params.tourGuideId;
+    const trip = await Trip.findByIdAndDelete(id, { tourguide: tourguide });
+    res.json({ msg: "Trip deleted ", data: trip });
   } catch (error) {
     console.log(error);
     res.json({ msg: "Couldn't delete trip" });
   }
 });
+
+module.exports = router;
