@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
     res.json({ msg: "trip does not exist" });
   }
 });
-//get ttips of specific tourguide
+//Get trips of specific tourguide
 router.get("/:tourguide", async (req, res) => {
   try {
     const id = req.params.tourguide;
@@ -36,7 +36,7 @@ router.get("/:tourguide", async (req, res) => {
   }
 });
 
-//create trip
+//Create trip
 router.post("/create/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -57,7 +57,7 @@ router.post("/create/:id", async (req, res) => {
   }
 });
 
-//add places
+//Add places
 router.put("/:id/addplaces", async (req, res) => {
   try {
     const id = req.params.id;
@@ -73,7 +73,7 @@ router.put("/:id/addplaces", async (req, res) => {
   }
 });
 
-//remove places
+//Remove places
 router.put("/:id/removeplaces", async (req, res) => {
   try {
     const id = req.params.id;
