@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LandingNavbar from "./LandingNavBar";
 import { Button, ButtonToolbar } from "react-bootstrap";
+import Footer from "./Footer";
 
 export class Landing extends Component {
   render() {
@@ -40,15 +41,16 @@ export class Landing extends Component {
             <ButtonToolbar>
               <Button variant="info">Register</Button>
               <Button
-                href="/Tourist"
+                href="/signin"
                 variant="info"
                 style={{ marginLeft: "7px" }}
               >
-                Login
+                Signin
               </Button>
             </ButtonToolbar>
           </div>
         </section>
+        <Footer />
       </div>
     );
   }
