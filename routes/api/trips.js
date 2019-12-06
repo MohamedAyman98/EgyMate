@@ -50,11 +50,11 @@ router.post("/create/:id",async(req,res)=>{
         city,
         placestoVisit
     }= req.body
-    const newTrip = new Trip(
+    const newTrip = new Trip({
         city,
         placestoVisit,
         id
-    )
+    })
     res.json({data : newTrip})
     }catch(error){
         console.log(error)
