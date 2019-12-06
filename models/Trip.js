@@ -7,7 +7,7 @@ const tripSchema = new Schema({
     type: String
   },
   placestoVisit: {
-    type: [String],
+    type: [{ type: Schema.Types.ObjectId, ref: "Place" }],
     required: true
   },
   tourguide: {
