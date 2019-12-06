@@ -6,6 +6,9 @@ const placeSchema = new Schema({
   name: {
     type: String
   },
+  city: {
+    type: String
+  },
   locationURL: {
     type: String
   }
