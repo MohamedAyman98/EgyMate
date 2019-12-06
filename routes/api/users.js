@@ -150,6 +150,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.get("/selectTrip/:touristId", async (req, res) => {});
-
 module.exports = router;

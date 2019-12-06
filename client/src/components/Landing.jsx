@@ -21,7 +21,7 @@ export class Landing extends Component {
                     textAlign: "center"
                   }}
                 >
-                  <b>Egy Mate</b>
+                  <b>EgyMate</b>
                 </h1>
                 <p class="lead">A great facility for your trips in Egypt</p>
               </div>
@@ -45,7 +45,7 @@ export class Landing extends Component {
                 variant="info"
                 style={{ marginLeft: "7px" }}
               >
-                Signin
+                Sign In
               </Button>
             </ButtonToolbar>
           </div>
