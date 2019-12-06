@@ -22,28 +22,23 @@ export class Landing extends Component {
                 >
                   <b>Egy Mate</b>
                 </h1>
-                <p class="lead">A great facility for your trips</p>
+                <p class="lead">A great facility for your trips in Egypt</p>
               </div>
             </div>
           </div>
         </header>
-        
+
         <section class="py-5">
           <div class="container">
             <h2 class="font-weight-light">Welcome !</h2>
             <p>
-              EgyMate is a website for both tourists and tour guides. We
-              offer a unique service that matches tourists with independant tour
-              guides, removing the stress of having to plan your own trip when
-              visiting a new place in Egypt.{" "}
-              <b>
-                To join, Please Register or Login.
-              </b>
+              EgyMate is a website for both tourists and tour guides. We offer a
+              unique service that matches tourists with independant tour guides,
+              removing the stress of having to plan your own trip when visiting
+              a new place in Egypt. <b>To join, Please Register or Login.</b>
             </p>
             <ButtonToolbar>
-              <Button variant="info">
-                Register
-              </Button>
+              <Button variant="info">Register</Button>
               <Button
                 href="/Tourist"
                 variant="info"
@@ -54,7 +49,6 @@ export class Landing extends Component {
             </ButtonToolbar>
           </div>
         </section>
-        
       </div>
     );
   }
