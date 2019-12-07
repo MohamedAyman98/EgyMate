@@ -2,8 +2,25 @@ import React, { Component } from "react";
 import "../signin.css";
 import SigninNav from "./SigninNav";
 import Footer from "./Footer";
+import axios from "axios";
 
 export class Signin extends Component {
+  state = {
+    Email: "",
+    Password: ""
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onClick = e => {
+    //axios.post("/api/users/login", body, config);
+    //.then(res => )
+  };
+
   render() {
     return (
       <div>
@@ -24,10 +41,11 @@ export class Signin extends Component {
                             id="inputEmail"
                             class="form-control"
                             placeholder="Email address"
+                            onChange={this.handleChange}
                             required
                             autofocus
                           />
-                          <label for="inputEmail">Email address</label>
+                          <label for="inputEmail">Email</label>
                         </div>
                         <div class="form-label-group">
                           <input
@@ -35,6 +53,7 @@ export class Signin extends Component {
                             id="inputPassword"
                             class="form-control"
                             placeholder="Password"
+                            onChange={this.handleChange}
                             required
                           />
                           <label for="inputPassword">Password</label>
@@ -55,6 +74,7 @@ export class Signin extends Component {
                         <button
                           class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
+                          onClick={this.onClick}
                         >
                           Sign in
                         </button>

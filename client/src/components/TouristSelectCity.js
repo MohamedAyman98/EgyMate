@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 
-export class TouristView extends Component {
+export class TouristSelectCity extends Component {
   state = {
-    dropdownOpen: false
+    dropdownOpen: false,
+    selectValue: "",
+    citySelected: false
   };
   toggle = () => {
     this.setState({
@@ -40,4 +42,4 @@ export class TouristView extends Component {
   }
 }
 
-export default TouristView;
+export default TouristSelectCity;
