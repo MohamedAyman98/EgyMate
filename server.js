@@ -1,17 +1,41 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const config = require("config");
 
 const app = express();
 
+// Require Router Handlers
+const users = require("./routes/api/users");
+const places = require("./routes/api/places");
+const trips = require("./routes/api/trips");
+
 //Db config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 //Connect to Mongo
 mongoose
-  .connect(db)
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
   .then(() => console.log("Connected to MongoDB.."))
   .catch(error => console.log(error));
 
-const port = process.env.PORT || 5000;
+// Init middleware
+app.use(express.json());
 
-app.listen(port, () => console.log(`Server is up and running on port ${port}`));
+// Entry point
+app.get("/", (req, res) => res.send(`<h1>EgyMate</h1>`));
+
+// Direct to Route Handlers
+app.use("/api/users", users);
+app.use("/api/places", places);
+app.use("/api/trips", trips);
+
+app.use((req, res) =>
+  res.status(404).send(`<h1>Can not find what you're looking for</h1>`)
+);
+
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Server up and running on port ${port}`));
