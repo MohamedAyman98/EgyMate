@@ -30,17 +30,16 @@ export default class MakeTrip extends Component {
   }
 
   submit() {
-    let trip = {
-      city: this.state.city,
-      placestoVisit: this.state.places,
-      price: this.state.price,
-      status:"Pending"
-    };
     axios.post(
-      "http://localhost:5000/api/trips/createTrip/5dea57767850771a08863fd5",
-      trip
-    );
-    //this.props.history.push("/tourist/home");
+      "http://localhost:4000/api/trips/createTrip/5dea57767850771a08863fd5",
+      {
+        "city": this.state.city,
+        "placestoVisit": ["5deaafa3499caf5c92d3400c","5deabd43ca5bf9603f98655d"],
+      })
+      .then(res => console.log(res.data))
+   
+    
+    //this.props.history.push("/tourguide/home");
   }
 
   render() {
