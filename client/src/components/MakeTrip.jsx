@@ -37,7 +37,7 @@ export default class MakeTrip extends Component {
       status:"Pending"
     };
     axios.post(
-      "http://localhost:5000/api/trips/createTrip/",
+      "http://localhost:5000/api/trips/createTrip/5dea57767850771a08863fd5",
       trip
     );
     //this.props.history.push("/tourist/home");
