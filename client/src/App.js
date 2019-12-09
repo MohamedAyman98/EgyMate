@@ -8,6 +8,7 @@ import Signin from "./components/Signin";
 import MakeTrip from "./components/MakeTrip";
 import TourguideHome from "./components/TourguideHome";
 import TouristHome from "./components/TouristHome";
+import MyTrips from "./components/MyTrips";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/tourguide/maketrip" component={MakeTrip} />
       <Route exact path="/tourguide/home" component={TourguideHome} />
       <Route exact path="/tourist/home" component={TouristHome} />
+      <Route exact path="/tourist/myTrips/" component={MyTrips} />
     </BrowserRouter>
   );
 }

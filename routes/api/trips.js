@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
     const city = trips[i].city;
     const tourGuideName = await User.findById(trips[i].tourguide);
     var tourguide = tourGuideName.name;
+
     for (var j = 0; j < trips[i].placestoVisit.length; j++) {
       var place = await Place.findOne({ _id: trips[i].placestoVisit[j] });
       var name = place.name;
@@ -38,11 +39,61 @@ router.get("/:city", async (res, req) => {
 });
 
 //Get specifc trip
-router.get("/:id", async (req, res) => {
+router.get("/tourist/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const trip = await Trip.findById({ _id: id });
-    res.json({ data: trip });
+    const trips = await Trip.find({ tourist: id });
+    var placeNames = "";
+    var result = [];
+    for (var i = 0; i < trips.length; i++) {
+      const city = trips[i].city;
+      const tourGuideName = await User.findById(trips[i].tourguide);
+      var tourguide = tourGuideName.name;
+      for (var j = 0; j < trips[i].placestoVisit.length; j++) {
+        var place = await Place.findOne({ _id: trips[i].placestoVisit[j] });
+        var name = place.name;
+        placeNames += name + ", ";
+      }
+      const price = trips[i].price;
+      result.push({
+        City: city,
+        TourGuideName: tourguide,
+        placestoVisit: placeNames,
+        Price: price
+      });
+      placeNames = "";
+    }
+    res.json({ data: result });
+  } catch (error) {
+    console.log(error);
+    res.json({ msg: "trip does not exist" });
+  }
+});
+router.get("tourguide/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const trips = await Trip.find({ tourguide: id });
+    var placeNames = "";
+    var result = [];
+    for (var i = 0; i < trips.length; i++) {
+      const city = trips[i].city;
+      const tourGuideName = await User.findById(trips[i].tourguide);
+      var tourguide = tourGuideName.name;
+      for (var j = 0; j < trips[i].placestoVisit.length; j++) {
+        var place = await Place.findOne({ _id: trips[i].placestoVisit[j] });
+        var name = place.name;
+        placeNames += name + ", ";
+      }
+      const price = trips[i].price;
+      result.push({
+        City: city,
+        TourGuideName: tourguide,
+        placestoVisit: placeNames,
+        Price: price
+      });
+      placeNames = "";
+    }
+    res.json({ data: result });
   } catch (error) {
     console.log(error);
     res.json({ msg: "trip does not exist" });
@@ -71,11 +122,13 @@ router.post("/createTrip/:tourGuideId", async (req, res) => {
     if (tourguide.type != "TourGuide") {
       res.json({ msg: "You have to be a tourguide" });
     }
-    const { city, placestoVisit } = req.body;
+    const { city, placestoVisit, price, status } = req.body;
     const newTrip = new Trip({
       city,
       placestoVisit,
-      tourguide: id
+      tourguide: id,
+      price: price,
+      status: status
     });
 
     newTrip.save().then(newTrip => res.json({ data: newTrip }));

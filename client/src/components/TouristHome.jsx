@@ -19,9 +19,7 @@ class TouristHome extends Component {
               <Carousel.Caption>
                 <h3
                   style={{ cursor: "pointer" }}
-                  onClick={e =>
-                    this.props.history.push("/tourist/selectTrip")
-                  }
+                  onClick={e => this.props.history.push("/tourist/selectTrip")}
                 >
                   Pick a trip
                 </h3>
@@ -36,9 +34,9 @@ class TouristHome extends Component {
               <Carousel.Caption>
                 <h3
                   style={{ cursor: "pointer" }}
-                //   onClick={e =>
-                //     this.props.history.push("/tourist/")
-                //   }
+                  onClick={e =>
+                    this.props.history.push("/myTrips/5de94e7948c3d44057a67d63")
+                  }
                 >
                   Upcoming trips
                 </h3>

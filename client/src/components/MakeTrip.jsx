@@ -34,12 +34,9 @@ export default class MakeTrip extends Component {
       city: this.state.city,
       placestoVisit: this.state.places,
       price: this.state.price,
-      status:"Pending"
+      status: "Pending"
     };
-    axios.post(
-      "http://localhost:5000/api/trips/createTrip/5dea57767850771a08863fd5",
-      trip
-    );
+    axios.post("/api/trips/createTrip/5dea57767850771a08863fd5", trip);
     //this.props.history.push("/tourist/home");
   }
 
@@ -73,7 +70,7 @@ export default class MakeTrip extends Component {
                   </Nav.Item>
                 </Nav>
               </Card.Header>
-              
+
               <Card.Body>
                 <Form action="home">
                   {this.state.step === 0 && (
@@ -141,8 +138,7 @@ export default class MakeTrip extends Component {
                           }
                         />
                       </Card.Text>
-                      <Button variant="primary" onClick={e => this.submit()}
->
+                      <Button variant="primary" onClick={e => this.submit()}>
                         Finish
                       </Button>
                     </>

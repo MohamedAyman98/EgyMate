@@ -11,7 +11,7 @@ export class TouristSelectTrip extends Component {
       trips: [],
       loading: true,
       error: false,
-      selectedTrip: null
+      selectedTripId: null
     };
   }
   componentDidMount() {
