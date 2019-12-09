@@ -9,26 +9,14 @@ export class MyTrips extends Component {
     super(props);
 
     this.state = {
-      trips: [],
-      user: {}
+      trips: []
     };
   }
 
   componentDidMount() {
-    const id = "5de94e7948c3d44057a67d63";
-    axios
-      .get(`/api/users/${id}`)
-      .then(res => res.data.data)
-      .then(user => this.setState({ user: user.data }));
-    if (this.state.user.type === "Tourist") {
-      axios
-        .get("/api/trips/tourist" + this.state.id)
-        .then(res => this.setState({ trips: res.data.data }));
-    } else {
-      axios
-        .get("/api/trips/tourguide" + this.state.id)
-        .then(res => this.setState({ trips: res.data.data }));
-    }
+    axios.get("api/trips/tourist/5de94e7948c3d44057a67d63").then(res => {
+      this.setState({ trips: res.data.data });
+    });
   }
 
   render() {

@@ -34,9 +34,7 @@ class TouristHome extends Component {
               <Carousel.Caption>
                 <h3
                   style={{ cursor: "pointer" }}
-                  onClick={e =>
-                    this.props.history.push("/myTrips/5de94e7948c3d44057a67d63")
-                  }
+                  onClick={e => this.props.history.push("/tourist/myTrips")}
                 >
                   Upcoming trips
                 </h3>
