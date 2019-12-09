@@ -141,7 +141,8 @@ export default class MakeTrip extends Component {
                           }
                         />
                       </Card.Text>
-                      <Button variant="primary">
+                      <Button variant="primary" onClick={e => this.submit()}
+>
                         Finish
                       </Button>
                     </>
