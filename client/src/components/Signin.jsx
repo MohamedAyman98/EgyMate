@@ -3,11 +3,12 @@ import "../signin.css";
 import SigninNav from "./SigninNav";
 import Footer from "./Footer";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export class Signin extends Component {
   state = {
-    Email: "",
-    Password: ""
+    email: "",
+    password: ""
   };
 
   handleChange = e => {
@@ -17,8 +18,14 @@ export class Signin extends Component {
   };
 
   onClick = e => {
-    //axios.post("/api/users/login", body, config);
-    //.then(res => )
+    e.preventDefault();
+    const { email, password } = this.state;
+    axios
+      .post("/api/users/login", { email, password })
+      .then(res => {
+        //return <Redirect from="/signin/" to="/Tourist" />;
+      })
+      .catch(error => {});
   };
 
   render() {
@@ -41,6 +48,7 @@ export class Signin extends Component {
                             id="inputEmail"
                             class="form-control"
                             placeholder="Email address"
+                            name="email"
                             onChange={this.handleChange}
                             required
                             autofocus
@@ -53,6 +61,7 @@ export class Signin extends Component {
                             id="inputPassword"
                             class="form-control"
                             placeholder="Password"
+                            name="password"
                             onChange={this.handleChange}
                             required
                           />

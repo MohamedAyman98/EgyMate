@@ -28,9 +28,9 @@ router.get("/:id", async (req, res) => {
   }
 });
 //Get trips of specific tourguide
-router.get("/:tourguide", async (req, res) => {
+router.get("/:tourguideId", async (req, res) => {
   try {
-    const id = req.params.tourguide;
+    const id = req.params.tourguideId;
     const tourguide = await User.findById({ _id: id });
     if (tourguide.type != "TourGuide") {
       res.json({ msg: "Specified person is not a tourguide" });
@@ -58,8 +58,6 @@ router.post("/createTrip/:tourGuideId", async (req, res) => {
     });
 
     newTrip.save().then(newTrip => res.json({ data: newTrip }));
-
-    res.json({ data: newTrip });
   } catch (error) {
     console.log(error);
     res.json({ msg: "error creating trip" });
