@@ -18,10 +18,12 @@ router.get("/", async (req, res) => {
       var name = place.name;
       placeNames += name + ", ";
     }
+    const price = trips[i].price;
     result.push({
       City: city,
       TourGuideName: tourguide,
-      placestoVisit: placeNames
+      placestoVisit: placeNames,
+      Price: price
     });
     placeNames = "";
   }

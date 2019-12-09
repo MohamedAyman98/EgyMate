@@ -20,7 +20,10 @@ const tripSchema = new Schema({
     ref: "User"
   },
   price: {
-    type: Number
+    type: String
+  },
+  status: {
+    type: String
   }
 });
 

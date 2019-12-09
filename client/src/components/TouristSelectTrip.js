@@ -26,7 +26,6 @@ export class TouristSelectTrip extends Component {
       return (
         <div className="App">
           <LandingNavbar />
-
           <Spinner animation="border" variant="primary" />
         </div>
       );
