@@ -36,16 +36,16 @@ export class Landing extends Component {
               EgyMate is a website for both tourists and tour guides. We offer a
               unique service that matches tourists with independant tour guides,
               removing the stress of having to plan your own trip when visiting
-              a new place in Egypt. <b>To join, Please Register or Login.</b>
+              a new place in Egypt. <b>To continue, Please state whether you are a tourist or a tourguide.</b>
             </p>
             <ButtonToolbar>
-              <Button variant="info">Register</Button>
+              <Button variant="info" href="/selectTrip">I am a tourist</Button>
               <Button
-                href="/signin"
+                href="/tourguide/home"
                 variant="info"
                 style={{ marginLeft: "7px" }}
               >
-                Sign In
+                I am a tourguide
               </Button>
             </ButtonToolbar>
           </div>
