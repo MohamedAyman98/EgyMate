@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import MapTrips from "./MapTrips";
 import Axios from "axios";
+import LandingNavbar from "./LandingNavBar";
+import { Spinner } from "react-bootstrap";
 
 export class TouristSelectTrip extends Component {
   constructor(props) {
@@ -8,7 +10,8 @@ export class TouristSelectTrip extends Component {
     this.state = {
       trips: [],
       loading: true,
-      error: false
+      error: false,
+      selectedTrip: null
     };
   }
   componentDidMount() {
@@ -19,12 +22,23 @@ export class TouristSelectTrip extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Select your preferred trip:</h1>
-        <MapTrips trips={this.state.trips} />
-      </div>
-    );
+    if (this.state.loading)
+      return (
+        <div className="App">
+          <LandingNavbar />
+          <Spinner animation="border" variant="primary" />
+        </div>
+      );
+    else
+      return (
+        <div>
+          <LandingNavbar />
+          <br />
+          <br />
+          <h1>Select your preferred trip:</h1>
+          <MapTrips trips={this.state.trips} />
+        </div>
+      );
   }
 }
 
