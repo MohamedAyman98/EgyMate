@@ -14,6 +14,13 @@ const tripSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true
+  },
+  tourist: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  price: {
+    type: Number
   }
 });
 
