@@ -32,10 +32,12 @@ export default class MakeTrip extends Component {
   submit() {
     let trip = {
       city: this.state.city,
-      placestoVisit: this.state.places
+      placestoVisit: this.state.places,
+      price: this.state.price,
+      status:"Pending"
     };
     axios.post(
-      "http://localhost:4000/",
+      "http://localhost:5000/api/trips/createTrip/",
       trip
     );
     //this.props.history.push("/tourist/home");
