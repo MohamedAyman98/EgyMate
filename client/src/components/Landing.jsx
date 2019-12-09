@@ -39,7 +39,7 @@ export class Landing extends Component {
               a new place in Egypt. <b>To continue, Please state whether you are a tourist or a tourguide.</b>
             </p>
             <ButtonToolbar>
-              <Button variant="info" href="/selectTrip">I am a tourist</Button>
+              <Button variant="info" href="/tourist/home">I am a tourist</Button>
               <Button
                 href="/tourguide/home"
                 variant="info"
