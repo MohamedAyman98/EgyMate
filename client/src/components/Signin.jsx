@@ -3,7 +3,6 @@ import "../signin.css";
 import SigninNav from "./SigninNav";
 import Footer from "./Footer";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 export class Signin extends Component {
   state = {
