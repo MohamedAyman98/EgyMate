@@ -6,6 +6,7 @@ import TouristSelectTrip from "./components/TouristSelectTrip";
 import Landing from "./components/Landing";
 import Signin from "./components/Signin";
 import MakeTrip from "./components/MakeTrip";
+import TourguideHome from "./components/TourguideHome";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route exact path="/selectTrip" component={TouristSelectTrip} />
       <Route exact path="/signin" component={Signin} />
-      <Route exact path="/maketrip" component={MakeTrip} />
+      <Route exact path="/tourguide/maketrip" component={MakeTrip} />
+      <Route exact path="/tourguide/home" component={TourguideHome} />
     </BrowserRouter>
   );
 }
